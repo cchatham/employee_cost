@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_150234) do
+ActiveRecord::Schema.define(version: 2020_09_26_191829) do
 
   create_table "dependents", force: :cascade do |t|
     t.string "name", null: false
@@ -22,11 +22,9 @@ ActiveRecord::Schema.define(version: 2020_09_26_150234) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "base_salary", default: 0, null: false
-    t.integer "benefits_cost", default: 0, null: false
-    t.integer "adjusted_salary", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "dependents_count", default: 0, null: false
   end
 
   add_foreign_key "dependents", "employees"

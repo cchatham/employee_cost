@@ -17,6 +17,6 @@ class Employee < ApplicationRecord
 
   def cost
     #TODO dont run a count query for every employee. Preload the count somehow.
-    @cost ||= DEDUCTION + (dependents.count * Dependent::DEDUCTION)
+    @cost ||= DEDUCTION + (dependents_count * Dependent::DEDUCTION)
   end
 end
