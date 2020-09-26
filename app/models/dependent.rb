@@ -1,5 +1,7 @@
 class Dependent < ApplicationRecord
 
+  include Discount
+
   DEDUCTION = 500.freeze
   DISCOUNT_START_WITH = "a"
 
@@ -8,8 +10,7 @@ class Dependent < ApplicationRecord
 
   belongs_to :employee, counter_cache: true
 
-  #TODO database side instead?
-  def discount_eligible?
-    name.downcase.start_with?(DISCOUNT_START_WITH)
+  def deduction_amount
+    DEDUCTION
   end
 end
