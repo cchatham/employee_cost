@@ -1,0 +1,52 @@
+<div>
+<%= form_with model: @new_employee, url: "/employees" do |employee_form| %>
+  <div>
+  <%= employee_form.label(:name, "Employee's Name:") %>
+  <%= employee_form.text_field(:name) %>
+  </div>
+
+  <%= employee_form.fields_for :dependents, @new_dependents do |dependents_form| %>
+      <div>
+      <%= dependents_form.label(:name, "Dependent's Name:") %>
+      <%= dependents_form.text_field(:name) %>
+      </div>
+  <% end %>
+
+  <%= employee_form.button("Submit", type: "submit") %>
+<% end %>
+</div>
+
+<div>
+  <table>
+    <tr>
+      <th>
+        Employee Name
+      </th>
+      <th>
+        Number of Dependents
+      </th>
+      <th>
+        Total Deduction
+      </th>
+      <th>
+        Adjusted Yearly Salary
+      </th>
+    </tr>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td>
+          <%= employee.name %>
+        </td>
+        <td>
+          <%= employee.dependents_count %>
+        </td>
+        <td>
+          <%= employee.cost %>
+        </td>
+        <td>
+          <%= employee.adjusted_salary %>
+        </td>
+      </tr>
+      <%end%>
+  </table>
+</div>
