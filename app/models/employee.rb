@@ -13,12 +13,12 @@ class Employee < ApplicationRecord
   # Allow dependents creation at the same time as the employee creation.
   accepts_nested_attributes_for :dependents, :reject_if => proc { |att| att[:name].blank? }
 
-  def adjusted_salary
-    @adjusted_salary ||= YEARLY_BASE_SALARY - cost
-  end
-
   def cost
     @cost ||= deduction + dependents_deduction
+  end
+
+  def adjusted_salary
+    @adjusted_salary ||= YEARLY_BASE_SALARY - cost
   end
 
   def deduction_amount
